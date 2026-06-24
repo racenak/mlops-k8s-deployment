@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: hello-argocd
-          image: hello-argocd:latest
+          image: ghcr.io/racenak/mlops-k8s-deployment/hello-argocd:a02501620eb4a36b11071495aeab0c312f896c02
           ports:
             - containerPort: 8080
           livenessProbe:
