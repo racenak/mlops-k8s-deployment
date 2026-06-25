@@ -6,6 +6,12 @@ namespace: argocd
 resources:
   - ../base
 
+secretGenerator:
+  - name: argocd-secret
+    behavior: replace
+    literals:
+      - admin.password=$2a$10$jc58uCO3qGC17IrSo16RSeXEdQb1BGb86vKq.EV0wunuJtSKVxz2i
+
 patches:
   - target:
       kind: Deployment
