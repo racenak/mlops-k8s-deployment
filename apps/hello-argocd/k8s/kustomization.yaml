@@ -3,5 +3,9 @@ kind: Kustomization
 
 resources:
   - application.yaml
-  - deployment.yaml
+  - namespace.yaml
+  - rollout.yaml
   - service.yaml
+  - service-preview.yaml
+  - destination-rule.yaml
+  - virtual-service.yaml

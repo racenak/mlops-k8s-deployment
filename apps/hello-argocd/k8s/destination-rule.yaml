@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: hello-argocd
+  namespace: default
+spec:
+  host: hello-argocd
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+  subsets:
+    - name: stable
+      labels:
+        app: hello-argocd
+    - name: preview
+      labels:
+        app: hello-argocd

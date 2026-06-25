@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: hello-argocd
+  namespace: default
+spec:
+  hosts:
+    - hello-argocd
+  http:
+    - route:
+        - destination:
+            host: hello-argocd
+            port:
+              number: 8080
