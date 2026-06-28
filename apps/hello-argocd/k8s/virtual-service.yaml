@@ -10,5 +10,13 @@ spec:
     - route:
         - destination:
             host: hello-argocd
+            subset: stable
             port:
               number: 8080
+          weight: 90
+        - destination:
+            host: hello-argocd
+            subset: canary
+            port:
+              number: 8080
+          weight: 10

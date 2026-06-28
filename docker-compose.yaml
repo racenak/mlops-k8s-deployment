@@ -1,0 +1,28 @@
+services:
+  traefik:
+    image: traefik:v3.7.5
+    container_name: traefik
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.yaml:/etc/traefik/traefik.yaml:ro
+    networks:
+      - mesh
+
+  hello-argocd:
+    build:
+      context: apps/hello-argocd
+    container_name: hello-argocd
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hello.rule=Host(`hello.localhost`)"
+      - "traefik.http.routers.hello.entrypoints=web"
+      - "traefik.http.services.hello.loadbalancer.server.port=8080"
+    networks:
+      - mesh
+
+networks:
+  mesh:
+    name: traefik-mesh

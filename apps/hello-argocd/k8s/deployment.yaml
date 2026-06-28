@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-argocd-stable
+  namespace: default
+  labels:
+    app: hello-argocd
+    version: stable
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-argocd
+      version: stable
+  template:
+    metadata:
+      labels:
+        app: hello-argocd
+        version: stable
+    spec:
+      containers:
+        - name: hello-argocd
+          image: ghcr.io/racenak/mlops-k8s-deployment/hello-argocd:a02501620eb4a36b11071495aeab0c312f896c02
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8080
+          resources:
+            requests:
+              cpu: 50m
+              memory: 16Mi
+            limits:
+              cpu: 100m
+              memory: 32Mi

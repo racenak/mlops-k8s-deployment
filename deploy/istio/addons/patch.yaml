@@ -7,4 +7,48 @@ spec:
   template:
     spec:
       nodeSelector:
-        role: istio
+        workload: istio
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  namespace: istio-system
+spec:
+  template:
+    spec:
+      nodeSelector:
+        workload: istio
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kiali
+  namespace: istio-system
+spec:
+  template:
+    spec:
+      nodeSelector:
+        workload: istio
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jaeger
+  namespace: istio-system
+spec:
+  template:
+    spec:
+      nodeSelector:
+        workload: istio
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: loki
+  namespace: istio-system
+spec:
+  template:
+    spec:
+      nodeSelector:
+        workload: istio

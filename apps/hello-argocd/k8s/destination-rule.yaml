@@ -11,7 +11,7 @@ spec:
   subsets:
     - name: stable
       labels:
-        app: hello-argocd
-    - name: preview
+        version: stable
+    - name: canary
       labels:
-        app: hello-argocd
+        version: canary
